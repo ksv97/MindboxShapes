@@ -23,7 +23,7 @@ public class Triangle : ShapeBase
     public double Side3 { get; }
 
     /// <summary>
-    /// Creates an instance of a triangle, performing validation
+    /// Creates an instance of a <see cref="Triangle"/>, performing validation
     /// </summary>
     /// <param name="side1">First side</param>
     /// <param name="side2">Second side</param>

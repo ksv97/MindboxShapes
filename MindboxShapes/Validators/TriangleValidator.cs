@@ -1,8 +1,18 @@
 ﻿using FluentValidation;
 
 namespace MindboxShapes;
+
+/// <summary>
+/// Validator for <see cref="Triangle"/>
+/// </summary>
 internal class TriangleValidator: AbstractValidator<Triangle>
 {
+
+    /// <summary>
+    /// Creates an instance of <see cref="Triangle"/> validator.
+    /// Makes rules for each side of triangle (should be positive).
+    /// Also makes rule for triangle existance: each side should be less than the sum of others.
+    /// </summary>
     public TriangleValidator()
     {
         RuleFor(triangle => triangle.Side1).GreaterThan(0).WithMessage("Сторона 1 должна быть положительным числом.");

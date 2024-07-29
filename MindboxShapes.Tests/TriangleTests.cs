@@ -2,9 +2,15 @@
 
 namespace MindboxShapes.Tests;
 
+/// <summary>
+/// Tests for <see cref="Triangle"/> class
+/// </summary>
 [TestClass]
 public class TriangleTests
 {
+    /// <summary>
+    /// Tests that initializing a <see cref="Triangle"/> with valid sides properly creates instance.
+    /// </summary>
     [TestMethod]
     public void Constructor_ValidSides_ShouldCreateTriangle()
     {
@@ -20,6 +26,12 @@ public class TriangleTests
         Assert.IsNotNull(triangle);
     }
 
+    /// <summary>
+    /// Test that, when sides of <see cref="Triangle"/> are negative or zero, <see cref="ValidationException"/> is thrown.
+    /// </summary>
+    /// <param name="side1">First side</param>
+    /// <param name="side2">Second side</param>
+    /// <param name="side3">Third side</param>
     [TestMethod]
     [DataRow(3,4,0)]
     [DataRow(3, 0, 4)]
@@ -32,6 +44,13 @@ public class TriangleTests
         Assert.ThrowsException<ValidationException>(() => new Triangle(side1, side2, side3));
     }
 
+    /// <summary>
+    /// Tests that, if one side is more than or equal to sum of others, throws <see cref="ValidationException"/>
+    /// This is because the rule for triangle: each side should be less than sum of others
+    /// </summary>
+    /// <param name="side1"></param>
+    /// <param name="side2"></param>
+    /// <param name="side3"></param>
     [TestMethod]
     [DataRow(3, 4, 7)]
     [DataRow(3, 7, 4)]
@@ -44,6 +63,9 @@ public class TriangleTests
         Assert.ThrowsException<ValidationException>(() => new Triangle(side1, side2, side3));
     }
 
+    /// <summary>
+    /// Tests that property for each side of <see cref="Triangle"/> return values initialized in Constructor
+    /// </summary>
     [TestMethod]
     public void GetSides_AfterCreatingObject_ShouldReturnValuesInitializedInConstructor()
     {
@@ -61,6 +83,9 @@ public class TriangleTests
         Assert.AreEqual(5, side3);
     }
 
+    /// <summary>
+    /// Tests that Area returns correct value for <see cref="Triangle"/> instance.
+    /// </summary>
     [TestMethod]
     public void Area_ValidTriangle_ShouldReturnCorrectValue()
     {
@@ -74,6 +99,12 @@ public class TriangleTests
         Assert.AreEqual(6, area);
     }
 
+    /// <summary>
+    /// Tests that true is returned by IsRight method, when the <see cref="Triangle"/> is right.
+    /// </summary>
+    /// <param name="side1">First side</param>
+    /// <param name="side2">Second side</param>
+    /// <param name="side3">Third side</param>
     [TestMethod]
     [DataRow(3,4,5)]
     [DataRow(3, 5, 4)]
@@ -89,7 +120,13 @@ public class TriangleTests
         // Assert
         Assert.IsTrue(isRight);
     }
-    
+
+    /// <summary>
+    /// Tests that false is returned by IsRight method, when the <see cref="Triangle"/> is right.
+    /// </summary>
+    /// <param name="side1">First side</param>
+    /// <param name="side2">Second side</param>
+    /// <param name="side3">Third side</param>
     [TestMethod]
     [DataRow(1,1,1)]
     [DataRow(2, 2, 3)]

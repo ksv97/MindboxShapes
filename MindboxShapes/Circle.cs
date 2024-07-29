@@ -14,7 +14,7 @@ public class Circle : ShapeBase
     public double Radius { get; }
 
     /// <summary>
-    /// Creates an instance of circle, performing validation
+    /// Creates an instance of <see cref="Circle"/>, performing validation
     /// </summary>
     /// <param name="radius">Radius of a circle</param>
     public Circle(double radius): base()
