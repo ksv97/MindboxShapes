@@ -11,7 +11,22 @@ public abstract class ShapeBase : IShape
     public abstract double Area { get; }
 
     /// <summary>
+    /// Validator for the current shape.
+    /// </summary>
+    protected abstract IValidator Validator { get; }
+
+    /// <summary>
+    /// Validation context for the current shape.
+    /// </summary>
+    public abstract IValidationContext ValidationContext{ get; }
+
+    /// <summary>
     /// Validates an object or throws a ValidationException.
     /// </summary>
-    protected abstract void Validate();
+    protected void Validate()
+    {
+        var validationResult = Validator.Validate(ValidationContext);
+        if (!validationResult.IsValid)
+            throw new ValidationException(validationResult.Errors);
+    }
 }

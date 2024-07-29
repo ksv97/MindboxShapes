@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using System.Reflection.Metadata.Ecma335;
 
 namespace MindboxShapes;
 
@@ -25,10 +26,9 @@ public class Circle : ShapeBase
     /// <inheritdoc/>    
     public override double Area => Math.PI * Radius * Radius;
 
-    /// <inheritdoc/>    
-    protected override void Validate()
-    {
-        CircleValidator validationRules = new CircleValidator();
-        validationRules.ValidateAndThrow(this);
-    }
+    /// <inheritdoc/> 
+    protected override IValidator Validator => new CircleValidator();
+
+    /// <inheritdoc/> 
+    public override IValidationContext ValidationContext => new ValidationContext<Circle>(this);
 }

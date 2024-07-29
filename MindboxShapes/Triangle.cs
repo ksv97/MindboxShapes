@@ -63,13 +63,10 @@ public class Triangle : ShapeBase
             }
         }
     }
-        
-    /// <summary>
-    /// Validates that each side is less than the sum of others and each side is positive.
-    /// </summary>
-    protected override void Validate()
-    {
-        TriangleValidator validator = new TriangleValidator();
-        validator.ValidateAndThrow(this);
-    }
+
+    /// <inheritdoc/> 
+    protected override IValidator Validator => new TriangleValidator();
+
+    /// <inheritdoc/> 
+    public override IValidationContext ValidationContext => new ValidationContext<Triangle>(this);
 }
